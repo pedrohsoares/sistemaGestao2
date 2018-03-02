@@ -1,5 +1,7 @@
 package sistema_gestao;
 
+import enums.TipoUsuario;
+
 /* Tipo:
  * Aluno Graduação
  * Aluno Mestrado
@@ -18,36 +20,20 @@ public class Usuario {
 	private String login;
 	private String senha;
 	
-	public Usuario(String nome, String curso, int tipo, String login, String senha) {
-		
+	public Usuario(String nome, String curso, String login, String senha) {
 		this.nome = nome;
 		this.curso = curso;
 		this.login = login;
 		this.senha = senha;
-		
-		switch (tipo) {
-			case 1:
-				this.tipo = TipoUsuario.ADMINISTRADOR;
-				break;
-			case 2:
-				this.tipo = TipoUsuario.PROFESSOR;
-				break;
-			case 3:
-				this.tipo = TipoUsuario.PESQUISADOR;
-				break;
-			case 4:
-				this.tipo = TipoUsuario.ALUNO_DOUTORADO;
-				break;
-			case 5:
-				this.tipo = TipoUsuario.ALUNO_MESTRADO;
-				break;
-			case 6:
-				this.tipo = TipoUsuario.ALUNO_GRADUACAO;
-				break;
-			default:
-				System.out.println("Nao foi possivel cadastrar o usuario!");
-				break;
-		}
+	}
+	
+	public Usuario(String nome, String curso, TipoUsuario tipoUsuario, String login, String senha,int id) {
+		this.nome = nome;
+		this.curso = curso;
+		this.tipo = tipoUsuario;
+		this.login = login;
+		this.senha = senha;
+		this.id = id;
 	}
 
 	public int getId() {
@@ -80,6 +66,34 @@ public class Usuario {
 
 	public void setTipo(TipoUsuario tipo) {
 		this.tipo = tipo;
+	}
+	
+	public boolean setTipo(int tipo) {
+		switch (tipo) {
+			case 1:
+				this.tipo = TipoUsuario.ADMINISTRADOR;
+				break;
+			case 2:
+				this.tipo = TipoUsuario.PROFESSOR;
+				break;
+			case 3:
+				this.tipo = TipoUsuario.PESQUISADOR;
+				break;
+			case 4:
+				this.tipo = TipoUsuario.ALUNO_DOUTORADO;
+				break;
+			case 5:
+				this.tipo = TipoUsuario.ALUNO_MESTRADO;
+				break;
+			case 6:
+				this.tipo = TipoUsuario.ALUNO_GRADUACAO;
+				break;
+			default:
+				System.out.println("Entrada errada. Digite uma entrada valida!\n");
+				return false;
+		}
+		
+		return true;
 	}
 
 	public String getLogin() {

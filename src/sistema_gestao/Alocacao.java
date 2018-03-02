@@ -1,47 +1,30 @@
 package sistema_gestao;
 
+import enums.StatusAlocacao;
+
 /* Status:
- * - Em processo de alocação
+ * - Em processo de alocacao
  * - Alocado
  * - Em andamento
- * - Concluído
+ * - Concluido
  */
 
 public class Alocacao {
 	
 	private Usuario responsavel;
 	private Recurso recurso;
-	private String status;
+	private StatusAlocacao status;
 	private Atividade atividades;
 	
-	public Alocacao(Usuario responsavel, Recurso recurso, int status, Atividade atividades) {
+	public Alocacao(Usuario responsavel, Recurso recurso, Atividade atividades) {
 		
 		this.responsavel = responsavel;
 		this.recurso = recurso;
 		this.atividades = atividades;
+		this.status = StatusAlocacao.EM_PROCESSO_DE_ALOCACAO;
 		
-		switch (status) {
-			case 1:
-				this.status = "Em processo de alocação";
-				break;
-			case 2:
-				this.status = "Alocado";
-				break;
-			case 3:
-				this.status = "Em andamento";
-				break;
-			case 4:
-				this.status = "Concluído";
-				break;
-		}
 	}
 	
-	
-	
-	
-	
-	
-
 	public Usuario getResponsavel() {
 		return responsavel;
 	}
@@ -54,10 +37,10 @@ public class Alocacao {
 	public void setRecurso(Recurso recurso) {
 		this.recurso = recurso;
 	}
-	public String getStatus() {
+	public StatusAlocacao getStatus() {
 		return status;
 	}
-	public void setStatus(String status) {
+	public void setStatus(StatusAlocacao status) {
 		this.status = status;
 	}
 	public Atividade getAtividades() {
